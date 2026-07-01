@@ -1,0 +1,31 @@
+{{! Hero Section }}
+<section class="bg-lp-dark-blue text-white relative pb-16 sm:pb-24 lg:pb-32 hero-svg">
+    <div class="container mx-auto px-4 sm:px-6 pt-6 sm:pt-8 md:pt-12 lg:pt-22 pb-6 sm:pb-8">
+        <div class="max-w-3xl mx-auto text-center relative z-10">
+            <h1 class="text-[32px] sm:text-[40px] md:text-[48px] font-extrabold mb-4 sm:mb-6 leading-[100%] text-white tracking-tight">
+                {{@custom.hero_title}}
+            </h1>
+            <p class="text-[18px] sm:text-[20px] md:text-[24px] font-medium mb-4 sm:mb-5 leading-[28px] sm:leading-[32px] text-gray-200">
+                {{@custom.hero_description}}
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+            <a href="{{@custom.hero_button_url}}" class="inline-block bg-white text-lp-dark-blue px-5 sm:px-6 md:px-10 w-full sm:w-auto sm:min-w-[200px] md:w-[280px] py-2.5 sm:py-2 rounded-lg text-sm sm:text-base md:text-lg hover:opacity-80 transition transform text-center">
+                {{@custom.hero_button_text}}
+            </a>
+            <a href="#" data-portal="subscribe" class="inline-block bg-transparent border border-white text-white px-5 sm:px-6 md:px-10 w-full sm:w-auto sm:min-w-[200px] md:w-[280px] py-2.5 sm:py-2 rounded-lg text-sm sm:text-base md:text-lg hover:opacity-80 transition transform text-center">
+                Subscribe for updates
+            </a>
+            </div>
+        </div>
+    </div>
+    
+    {{! TV Graphic }}
+    <div class="max-w-6xl mx-auto relative mb-[-300px] sm:mb-[-400px] md:mb-[-550px] mt-6 sm:mt-8 md:mt-[50px] pb-[60px] sm:pb-[80px] md:pb-[100px]">        
+        <div class="max-w-[857px] mx-auto ">
+            <img src="{{asset "img/tv-screen.png"}}" alt="TV Screen Content" class="w-full h-full object-cover">
+        </div>         
+    </div>
+
+
+</section>
+

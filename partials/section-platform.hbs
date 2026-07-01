@@ -1,0 +1,27 @@
+{{! Platform Section }}
+{{#get "pages" limit="1" filter="tag:hash-platform"}}
+    {{#foreach pages}}  
+<section class="bg-lp-light-blue py-8 sm:py-12 md:py-16 lg:py-20">
+    <div class="container mx-auto px-4 sm:px-6">
+        <h2 class="text-[28px] sm:text-[32px] md:text-[40px] font-bold mb-3 sm:mb-4 text-center leading-[120%] sm:leading-[130%] md:leading-[52px]">
+            {{title}}
+        </h2>
+        <p class="text-[16px] sm:text-[18px] md:text-[20px] font-medium text-center mb-8 sm:mb-10 md:mb-12 leading-[24px] sm:leading-[26px] md:leading-[28px] px-2">
+            {{excerpt}}
+        </p>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+            {{content}}
+            <div class="text-center sm:col-span-2 md:col-span-1 hidden">
+                <div class="flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                     <div class="h-[100px] sm:h-[120px] md:h-[150px]"></div>
+                </div>
+                <h3 class="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 md:mb-4"></h3>
+                <ul class="space-y-1 sm:space-y-2 text-lp-gray text-xs sm:text-sm">
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{{/foreach}}
+{{/get}}

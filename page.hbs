@@ -1,0 +1,63 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
+
+{{#page}}
+
+<main class="gh-main">
+
+    <article class="ghost-page {{page_class}}">
+
+        {{#if @page.show_title_and_feature_image}}
+        {{! Hero Header Section with Featured Image }}
+        <header class="bg-lp-dark-blue text-white relative pb-6 sm:pb-8 md:pb-10 post-hero-border">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-8 sm:pt-6 md:pt-4 pb-4 sm:pb-6">
+                <div>
+                    {{#if feature_image}}
+                        <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                            <div>
+                                <h1 class="text-[28px] sm:text-[32px] md:text-[36px] lg:text-[40px] font-extrabold mb-3 sm:mb-4 leading-[110%] text-white tracking-tight">
+                                    {{title}}
+                                </h1>
+                                {{#if custom_excerpt}}
+                                    <p class="text-[16px] sm:text-[18px] md:text-[20px] font-medium mb-4 sm:mb-6 leading-[24px] sm:leading-[26px] md:leading-[28px] text-gray-200">
+                                        {{custom_excerpt}}
+                                    </p>
+                                {{/if}}
+                            </div>
+                            <div class="order-first md:order-first">
+                                <img class="w-full rounded-2xl shadow-2xl" src="{{img_url feature_image size="xl"}}" alt="{{title}}">
+                            </div>
+                        </div>
+                    {{else}}
+                        <div class="max-w-2xl mx-auto">
+                            <h1 class="text-[32px] sm:text-[36px] md:text-[40px] font-extrabold mb-4 leading-[110%] text-white tracking-tight">
+                                {{title}}
+                            </h1>
+                            {{#if custom_excerpt}}
+                                <p class="text-[18px] sm:text-[20px] font-medium mb-6 leading-[28px] text-gray-200">
+                                    {{custom_excerpt}}
+                                </p>
+                            {{/if}}
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+        </header>
+        {{/if}}
+
+        {{! Content Section }}
+        <section class="bg-lp-light-blue py-8 sm:py-12 md:py-16">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="ghost-content prose prose-lg prose-lp max-w-none">
+                        {{content}}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </article>
+
+</main>
+
+{{/page}}

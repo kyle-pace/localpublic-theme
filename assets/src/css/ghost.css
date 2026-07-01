@@ -1,0 +1,582 @@
+/* -------------------------------------------------------------------------- */
+/* Ghost content layout */
+/* -------------------------------------------------------------------------- */
+.ghost-content {
+  --gap: max(2vmin,20px);
+  --main: min(var(--container-content,720px),100% - var(--gap) * 2);
+  --wide: minmax(0,calc((var(--wide-width, 1200px) - var(--content-width, 720px))/2));
+  --full: minmax(var(--gap),1fr);
+  display: grid;
+  grid-template-columns: [full-start] var(--full) [wide-start] var(--wide) [main-start] var(--main) [main-end] var(--wide) [wide-end] var(--full) [full-end];
+  max-width: none; 
+  margin-bottom: 4rem;
+  word-break: break-word;
+  line-height: 1.6;
+}
+
+.ghost-content > * { grid-column: main-start/main-end; }
+.ghost-content .kg-width-wide { grid-column: wide-start/wide-end; }
+.ghost-content .kg-width-full { grid-column: full-start/full-end; }
+.ghost-content .kg-width-regular { grid-column: main-start/main-end; }
+
+/* no overflow */
+.ghost-content[data-no-overflow] { max-width: 100%; }
+.ghost-content[data-no-overflow] .kg-width-wide { grid-column: main-start/main-end; }
+.ghost-content[data-no-overflow] .kg-width-full { grid-column: main-start/main-end; }
+
+/* -------------------------------------------------------------------------- */
+/* Fix unwanted margins in kg card texts wrapped in <p> */
+/* -------------------------------------------------------------------------- */
+.ghost-content .kg-card *:where(h1,h2,h3,h4,h5,h6) p:not([class]) { margin: 0; }
+
+/* -------------------------------------------------------------------------- */
+/* Spacing */
+/* -------------------------------------------------------------------------- */
+.ghost-content > *:not(h1,h2,h3,h4,h5,h6) { margin-bottom: 0; }
+.ghost-content blockquote { margin: 1rem 0 1rem; }
+.ghost-content hr { margin: 1rem 0; border-color: var(--color-lp-dark-blue); }
+.ghost-content p + ul,
+.ghost-content p + ol {
+  margin-top: 0.25em;
+}
+
+.ghost-content *:is(h1,h2,h3,h4,h5,h6) + div.kg-card,
+.ghost-content *:is(h1,h2,h3,h4,h5,h6) + figure.kg-card,
+.ghost-content *:is(h1,h2,h3,h4,h5,h6) + figure.kg-card.kg-bookmark-card {
+  margin-top: 0;
+}
+
+.ghost-content .kg-card { margin: 2rem 0 0; }
+.ghost-content figure.kg-card { margin: 1rem 0 1rem; }
+.ghost-content .kg-signup-card { margin: 1rem 0 0; }
+.ghost-content .kg-header-card { margin: 1rem 0 0; }
+.ghost-content figure.kg-card.kg-bookmark-card { margin: 1rem 0 0; }
+.ghost-content .kg-width-full + .kg-width-full { margin-top: 0; }
+
+
+/* -------------------------------------------------------------------------- */
+/* Link color */
+/* -------------------------------------------------------------------------- */
+.ghost-content a:not([class*="kg-"],[class*="btn"]) { 
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 2px;
+  font-weight: 400;
+}
+
+.ghost-content a:not([class*="kg-"],[class*="btn"]):hover {
+  color: var(--ghost-accent-color);
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* Figcaption */
+/* -------------------------------------------------------------------------- */
+.ghost-content figure figcaption { 
+  text-align: center;
+  margin: 0 auto;    
+  margin-top: .5rem;
+  opacity: .75;
+  font-size: 0.8rem;
+  font-family: var(--font-sans);
+  max-width: var(--container-content);
+  text-wrap: balance;
+}
+
+.ghost-content figure figcaption p { margin: 0; }
+
+
+/* -------------------------------------------------------------------------- */
+/* Iframe and table */
+/* -------------------------------------------------------------------------- */
+.ghost-content iframe { max-width: 100%; }
+
+/* Table styling */
+.ghost-content table {
+  width: 100%;
+  max-width: 100%;
+  margin: 2rem 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: white;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+.ghost-content table tbody {
+  width: 100%;
+}
+
+.ghost-content table thead {
+  background-color: var(--color-lp-dark-blue);
+  color: white;
+}
+
+.ghost-content table th {
+  padding: 0.875rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.ghost-content table th:first-child {
+  padding-left: 1.25rem;
+}
+
+.ghost-content table th:last-child {
+  padding-right: 1.25rem;
+}
+
+.ghost-content table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.15s ease;
+}
+
+.ghost-content table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.ghost-content table tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.ghost-content table tbody tr:nth-child(even):hover {
+  background-color: #f3f4f6;
+}
+
+.ghost-content table td {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  color: var(--color-lp-gray);
+}
+
+.ghost-content table td:first-child {
+  padding-left: 1.25rem;
+}
+
+.ghost-content table td:last-child {
+  padding-right: 1.25rem;
+}
+
+.ghost-content table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Responsive table wrapper */
+@media screen and (max-width: 768px) {
+  .ghost-content table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 1.5rem 0;
+    font-size: 0.875rem;
+  }
+
+  .ghost-content table th,
+  .ghost-content table td {
+    padding: 0.625rem 0.75rem;
+    white-space: nowrap;
+  }
+
+  .ghost-content table th:first-child,
+  .ghost-content table td:first-child {
+    padding-left: 1rem;
+  }
+
+  .ghost-content table th:last-child,
+  .ghost-content table td:last-child {
+    padding-right: 1rem;
+  }
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* All images in cards */
+/* -------------------------------------------------------------------------- */
+.kg-card img { margin: 0; } /* centering image card images */
+
+
+/* -------------------------------------------------------------------------- */
+/* Image card and gallery image position */
+/* -------------------------------------------------------------------------- */
+.kg-image-card, .kg-gallery-image { position: relative; }
+.kg-image-card img { margin: 0 auto; }
+
+
+/* -------------------------------------------------------------------------- */
+/* Blockquote alt */
+/* -------------------------------------------------------------------------- */
+blockquote.kg-blockquote-alt { 
+  line-height: 1.35; 
+  border: none;
+  color: var(--color-typ-tone);
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* Video card */
+/* -------------------------------------------------------------------------- */
+.kg-video-card video { margin: 0; }
+
+
+/* -------------------------------------------------------------------------- */
+/* Embed card */
+/* -------------------------------------------------------------------------- */
+.kg-embed-card .twitter-tweet { margin: 10px auto; }
+
+
+/* -------------------------------------------------------------------------- */
+/* Button card */
+/* -------------------------------------------------------------------------- */
+.ghost-content .kg-button-card a.kg-btn { 
+  border-radius: var(--radius-btn); 
+  color: var(--color-brand-contrast);
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+
+.ghost-content .kg-button-card { margin-bottom: 1em; }
+
+
+/* -------------------------------------------------------------------------- */
+/* Signup card */
+/* -------------------------------------------------------------------------- */
+.kg-content-wide .kg-signup-card-content { 
+  max-width: var(--container-wide); 
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.kg-signup-card picture { margin: 0; }
+
+.ghost-content .kg-signup-card-input { height: 3rem; }
+.ghost-content .kg-signup-card-button { height: 3rem; }
+.ghost-content .kg-signup-card-disclaimer { margin: 0.5rem 0 0; }
+
+
+/* -------------------------------------------------------------------------- */
+/* Header card */
+/* -------------------------------------------------------------------------- */
+.kg-content-wide .kg-header-card-content { 
+  max-width:var(--container-wide); 
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.kg-header-card picture { margin: 0; }
+.ghost-content .kg-header-card.kg-v2 .kg-header-card-button { height: 3rem; }
+
+
+/* -------------------------------------------------------------------------- */
+/* Product card */
+/* -------------------------------------------------------------------------- */
+.ghost-content .kg-product-card .kg-product-card-description ol, 
+.ghost-content .kg-product-card .kg-product-card-description p, 
+.ghost-content .kg-product-card .kg-product-card-description ul {
+  opacity: 0.85;
+}
+.ghost-content .kg-product-card-container {
+  background: var(--color-bgr-tone);
+  color: var(--color-typ);
+  border: 1px solid var(--color-brd);
+  font-family: var(--font-body);
+  box-shadow: none;
+  border-radius: var(--radius-theme);
+}
+
+.ghost-content .kg-product-card a.kg-product-card-button {
+  border-radius: var(--radius-btn);
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* Bookmark card */
+/* -------------------------------------------------------------------------- */
+.ghost-content .kg-bookmark-icon {
+  margin-right: 6px;
+}
+
+.ghost-content .kg-bookmark-card a.kg-bookmark-container, 
+.ghost-content .kg-bookmark-card a.kg-bookmark-container:hover {
+  background: var(--color-bgr-tone);
+  color: var(--color-typ);
+  border: 1px solid var(--color-brd);
+  border-radius: var(--radius-theme);
+}
+.ghost-content .kg-bookmark-content {
+  font-family: var(--font-body);
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* Audio card */
+/* -------------------------------------------------------------------------- */
+.ghost-content .kg-audio-card {
+  background: var(--color-bgr-tone);
+  color: var(--color-typ);
+  border: 1px solid var(--color-brd);
+  font-family: var(--font-body);
+  border-radius: var(--radius-theme);
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* File card */
+/* -------------------------------------------------------------------------- */
+.ghost-content .kg-file-card a.kg-file-card-container {
+  background: var(--color-bgr-tone);
+  color: var(--color-typ);
+  border: 1px solid var(--color-brd);
+  font-family: var(--font-body);
+  border-radius: var(--radius-theme);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Callout card */
+/* -------------------------------------------------------------------------- */
+.ghost-content .kg-callout-card {
+  border-radius: var(--radius-theme);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Toggle card */
+/* -------------------------------------------------------------------------- */
+.ghost-content .kg-toggle-card {
+  border-radius: var(--radius-theme);
+  background-color: #FFF;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* No margin top when kg-card is the first element
+/* -------------------------------------------------------------------------- */
+.ghost-content > .kg-card:first-child {
+  margin-top: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .ghost-content {
+    grid-template-columns: 1fr;
+    max-width: none; 
+    margin-bottom: 2rem;
+    word-break: break-word;
+    line-height: 1.6;
+  }
+
+  .ghost-content > * { grid-column: main-start/main-end; }
+  .ghost-content .kg-width-wide { grid-column: wide-start/wide-end; }
+  .ghost-content .kg-width-full { grid-column: full-start/full-end; }
+  .ghost-content .kg-width-regular { grid-column: main-start/main-end; }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Prose LP Styles - Unified prose styling for pages and posts */
+/* -------------------------------------------------------------------------- */
+.prose-lp {
+  color: var(--color-lp-gray);
+}
+
+.prose-lp h1,
+.prose-lp h2,
+.prose-lp h3,
+.prose-lp h4,
+.prose-lp h5,
+.prose-lp h6 {
+  color: var(--color-lp-dark-blue);
+  font-weight: 700;
+}
+
+.prose-lp h2 {
+  font-size: 22px;
+  line-height: 30px;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+@media (min-width: 640px) {
+  .prose-lp h2 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+}
+
+@media (min-width: 768px) {
+  .prose-lp h2 {
+    font-size: 32px;
+    line-height: 42px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .prose-lp h2 {
+    font-size: 40px;
+    line-height: 52px;
+  }
+}
+
+.prose-lp h3 {
+  font-size: 18px;
+  line-height: 26px;
+  margin-top: 1.25em;
+  margin-bottom: 0.5em;
+}
+
+@media (min-width: 640px) {
+  .prose-lp h3 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+@media (min-width: 768px) {
+  .prose-lp h3 {
+    font-size: 22px;
+    line-height: 30px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .prose-lp h3 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
+
+.prose-lp p {
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 0;
+}
+
+@media (min-width: 640px) {
+  .prose-lp p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+@media (min-width: 768px) {
+  .prose-lp p {
+    font-size: 17px;
+    line-height: 26px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .prose-lp p {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
+.prose-lp a {
+  color: var(--color-lp-dark-blue);
+  text-decoration: underline;
+}
+
+.prose-lp a:hover {
+  color: var(--color-lp-dark-blue);
+  opacity: 0.8;
+}
+
+.prose-lp ul,
+.prose-lp ol {
+  margin-bottom: 1.25em;
+  padding-left: 1.25em;
+}
+
+@media (min-width: 640px) {
+  .prose-lp ul,
+  .prose-lp ol {
+    margin-bottom: 1.5em;
+    padding-left: 1.5em;
+  }
+}
+
+.prose-lp li {
+  margin-bottom: 0.5em;
+  font-size: 15px;
+  line-height: 23px;
+}
+
+@media (min-width: 640px) {
+  .prose-lp li {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+@media (min-width: 768px) {
+  .prose-lp li {
+    font-size: 17px;
+    line-height: 26px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .prose-lp li {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
+.prose-lp blockquote {
+  border-left: 4px solid var(--color-lp-dark-blue);
+  padding-left: 1.25em;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: var(--color-lp-gray);
+}
+
+@media (min-width: 640px) {
+  .prose-lp blockquote {
+    padding-left: 1.5em;
+    margin: 2em 0;
+  }
+}
+
+.prose-lp img {
+  border-radius: 8px;
+  margin: 1em 0;
+}
+
+@media (min-width: 640px) {
+  .prose-lp img {
+    border-radius: 12px;
+    margin: 1em 0;
+  }
+}
+
+.prose-lp code {
+  background-color: rgba(46, 48, 145, 0.1);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.prose-lp pre {
+  background-color: var(--color-lp-dark-blue);
+  color: white;
+  padding: 1em;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+@media (min-width: 640px) {
+  .prose-lp pre {
+    padding: 1.5em;
+    border-radius: 12px;
+    margin: 2em 0;
+  }
+}
+
+.prose-lp pre code {
+  background-color: transparent;
+  color: white;
+  padding: 0;
+}

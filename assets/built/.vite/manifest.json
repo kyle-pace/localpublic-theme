@@ -1,0 +1,11 @@
+{
+  "assets/src/js/index.js": {
+    "file": "app.js",
+    "name": "app",
+    "src": "assets/src/js/index.js",
+    "isEntry": true,
+    "css": [
+      "app.css"
+    ]
+  }
+}

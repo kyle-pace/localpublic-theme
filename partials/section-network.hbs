@@ -1,0 +1,29 @@
+{{! Network Section }}
+
+{{#get "pages" limit="1" filter="tag:hash-network-of-stations"}}
+    {{#foreach pages}}           
+        <section class="bg-lp-light-blue py-8 sm:py-12 md:py-16 lg:py-20">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-[857px] mx-auto">
+                <h2 class="text-[28px] sm:text-[32px] md:text-[40px] font-bold mb-3 sm:mb-4 text-center leading-[120%] sm:leading-[130%] md:leading-[52px] px-2">
+                    {{title}}
+                </h2>
+                <div class="text-[16px] sm:text-[18px] md:text-[20px] font-medium text-center mb-8 sm:mb-10 md:mb-12 max-w-3xl mx-auto leading-[24px] sm:leading-[26px] md:leading-[28px] px-2">
+                    {{content}}
+                </div>
+                </div>
+                <div class="max-w-4xl mx-auto">
+                    <div>
+                        <div class="aspect-video flex items-center justify-center text-gray-400 text-xs sm:text-sm px-2">
+                            {{#if feature_image}}
+                                <img src="{{feature_image}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}Network of Stations{{/if}}" class="w-full h-full object-cover">
+                            {{else}}
+                                <img src="{{asset "img/public_stations.png"}}" alt="Network of Stations" class="w-full h-full object-cover">
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {{/foreach}}
+{{/get}}

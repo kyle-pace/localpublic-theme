@@ -1,0 +1,20 @@
+{{! Built by Stations Section }}
+{{#get "pages" limit="1" filter="tag:hash-built-by-stations"}}
+    {{#foreach pages}}  
+<section class="bg-lp-light-blue py-8 sm:py-12 md:py-16 lg:py-20">
+    <div class="container mx-auto px-4 sm:px-6">
+        <h2 class="text-[28px] sm:text-[32px] md:text-[40px] font-bold mb-3 sm:mb-4 text-center leading-[120%] sm:leading-[130%] md:leading-[52px] px-2">
+            {{title}}
+        </h2>
+        <p class="text-[16px] sm:text-[18px] md:text-[20px] font-medium text-center mb-8 sm:mb-10 md:mb-12 mx-auto leading-[24px] sm:leading-[26px] md:leading-[28px] px-2 max-w-[500px]">
+            {{excerpt}}
+        </p>
+        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6 max-w-site mx-auto justify-items-center stations-product-cards">
+            {{content}}{{! Feature Cards }}
+            
+
+        </div>
+    </div>
+</section>
+{{/foreach}}
+{{/get}}

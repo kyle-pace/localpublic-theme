@@ -1,0 +1,121 @@
+<header class="bg-lp-dark-blue text-white sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4 md:py-6 lg:py-8">
+        <nav class="flex justify-between items-center">
+            <div class="flex items-center space-x-1 sm:space-x-2">
+                <a href="{{@site.url}}" class="flex items-center space-x-1 sm:space-x-2">
+                    {{#if @site.logo}}
+                        <img src="{{@site.logo}}" alt="{{@site.title}}" class="h-8 sm:h-10 md:h-12 max-w-[194px] w-auto">
+                    {{else}}
+                        <span class="text-lg sm:text-xl md:text-2xl font-bold">LOCAL</span>
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
+                        </svg>
+                        <span class="text-lg sm:text-xl md:text-2xl font-bold">PUBLIC</span>
+                    {{/if}}
+                </a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden p-2.5 -mr-2 hover:bg-white/10 active:bg-white/20 rounded-lg transition-colors duration-200 cursor-pointer" aria-label="Toggle menu" aria-expanded="false">
+                <svg id="menu-icon" class="w-6 h-6 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+                <svg id="close-icon" class="w-6 h-6 hidden transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <!-- Desktop Navigation -->
+            <ul class="hidden md:flex items-center space-x-4 lg:space-x-6 text-sm lp-navigation-desktop-menu">
+                {{navigation}}
+                {{#if @site.members_enabled}}
+                    {{#unless @member}}
+                        <li><a href="#" data-portal="signin" class="hover:text-lp-light-blue transition">Sign In</a></li>
+                        <li><a href="#" data-portal="signup" class="hover:text-lp-light-blue transition">Subscribe</a></li>
+                    {{else}}
+                        <li><a href="#" data-portal="account" class="hover:text-lp-light-blue transition">Account</a></li>
+                    {{/unless}}
+                {{/if}}
+                <li>
+                    <a href="#" data-ghost-search class="p-2 hover:text-lp-light-blue transition" aria-label="Search">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 pt-4 border-t border-white/20 overflow-hidden transition-all duration-300 ease-in-out">
+            <nav class="pb-2">
+                <ul class="space-y-1">
+                    {{navigation}}
+                </ul>
+            </nav>
+            <div class="pt-3 mt-3 border-t border-white/10">
+                <a href="#" data-ghost-search class="flex items-center gap-3 px-4 py-3 text-base font-medium text-white bg-white/10 hover:bg-white/20 active:bg-white/30 rounded-lg transition-colors duration-200 cursor-pointer">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <span>Search</span>
+                </a>
+            </div>
+            {{#if @site.members_enabled}}
+                <div class="pt-3 mt-3 border-t border-white/10">
+                    <div class="flex flex-col gap-2">
+                        {{#unless @member}}
+                            <a href="#" data-portal="signin" class="block w-full px-4 py-3 text-base font-medium text-white bg-white/10 hover:bg-white/20 active:bg-white/30 rounded-lg transition-colors duration-200 text-center cursor-pointer">
+                                Sign In
+                            </a>
+                            <a href="#" data-portal="signup" class="block w-full px-4 py-3 text-base font-semibold text-lp-dark-blue bg-lp-light-blue hover:bg-white active:bg-white/90 rounded-lg transition-colors duration-200 text-center cursor-pointer">
+                                Subscribe
+                            </a>
+                        {{else}}
+                            <a href="#" data-portal="account" class="block w-full px-4 py-3 text-base font-medium text-white bg-white/10 hover:bg-white/20 active:bg-white/30 rounded-lg transition-colors duration-200 text-center cursor-pointer">
+                                Account
+                            </a>
+                        {{/unless}}
+                    </div>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuButton = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        
+        if (menuButton && menu && menuIcon && closeIcon) {
+            menuButton.addEventListener('click', function() {
+                const isHidden = menu.classList.contains('hidden');
+                
+                if (isHidden) {
+                    // Open menu
+                    menu.classList.remove('hidden');
+                    menuIcon.classList.add('hidden');
+                    closeIcon.classList.remove('hidden');
+                    menuButton.setAttribute('aria-expanded', 'true');
+                } else {
+                    // Close menu
+                    menu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                    menuButton.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            // Close menu when clicking on a link
+            const menuLinks = menu.querySelectorAll('a');
+            menuLinks.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    menu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                    menuButton.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+    });
+</script>

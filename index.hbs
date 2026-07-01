@@ -1,0 +1,64 @@
+{{!< default}}
+
+{{! Archive Header Section }}
+<section class="bg-lp-light-blue py-4 sm:py-12 md:py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            {{! Tag Archive }}
+            {{#tag}}
+                <h1 class="text-[28px] sm:text-[36px] md:text-[40px] lg:text-[48px] font-extrabold mb-1 sm:mb-4 leading-[120%] text-lp-dark-blue mb-0 sm:mb-0 md:mb-0 lg:mb-0">
+                    {{name}}
+                </h1>
+                {{#if description}}
+                    <p class="text-[16px] sm:text-[18px] md:text-[20px] font-medium text-lp-gray leading-[24px] sm:leading-[26px] md:leading-[28px] max-w-3xl mx-auto">
+                        {{description}}
+                    </p>
+                {{else}}
+                    <p class="text-[16px] sm:text-[18px] md:text-[20px] font-medium text-lp-gray leading-[24px] sm:leading-[26px] md:leading-[28px]">
+                        {{plural ../pagination.total empty='No posts' singular='% post' plural='% posts'}} tagged with "{{name}}"
+                    </p>
+                {{/if}}
+            {{/tag}}
+
+            {{! Latest Posts Archive }}
+            {{^tag}}
+                <h1 class="text-[28px] sm:text-[36px] md:text-[40px] lg:text-[48px] font-extrabold mb-1 sm:mb-4 leading-[120%] text-lp-dark-blue mb-0 sm:mb-0 md:mb-0 lg:mb-0">
+                    Latest Posts
+                </h1>
+                <p class="text-[16px] sm:text-[18px] md:text-[20px] font-medium text-lp-gray leading-[24px] sm:leading-[26px] md:leading-[28px]">
+                    Browse all our latest updates and stories
+                </p>
+            {{/tag}}
+        </div>
+    </div>
+</section>
+
+{{! Posts Grid Section }}
+<section class="bg-lp-light-blue py-4 sm:py-12 md:py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        {{#if posts}}
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+                {{#foreach posts}}
+                    {{> "card"}}
+                {{/foreach}}
+            </div>
+        {{else}}
+            {{! No posts message }}
+            <div class="max-w-2xl mx-auto text-center py-8 sm:py-12">
+                <p class="text-lg sm:text-xl text-lp-gray mb-4">No posts found.</p>
+                <a href="{{@site.url}}" class="inline-block bg-lp-dark-blue text-white px-6 py-3 rounded-lg hover:opacity-90 transition-opacity">
+                    Return to Home
+                </a>
+            </div>
+        {{/if}}
+    </div>
+</section>
+
+{{! Pagination Section }}
+{{#if pagination}}
+    <section class="bg-lp-light-blue py-6 sm:py-8 md:py-12">
+        <div class="text-center px-4 sm:px-6 max-w-6xl mx-auto">
+            {{pagination}}
+        </div>
+    </section>
+{{/if}}

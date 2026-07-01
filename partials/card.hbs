@@ -1,0 +1,53 @@
+<article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col">
+    {{#if feature_image}}
+        <a href="{{url}}" class="block">
+            <img class="w-full h-48 sm:h-56 object-cover" 
+                 src="{{img_url feature_image size="m"}}" 
+                 alt="{{title}}"
+                 loading="lazy">
+        </a>
+    {{else}}
+        <div class="bg-gradient-to-br from-lp-dark-blue to-lp-light-blue h-48 sm:h-56 flex items-center justify-center">
+            <span class="text-white text-4xl font-bold">{{title.[0]}}</span>
+        </div>
+    {{/if}}
+    
+    <div class="p-3 sm:p-4 md:p-6 flex flex-col grow">
+        {{#primary_tag}}
+            <a href="{{url}}" class="inline-block mb-3">
+                <span class="text-xs sm:text-sm font-medium text-lp-dark-blue uppercase tracking-wide">
+                    {{name}}
+                </span>
+            </a>
+        {{/primary_tag}}
+        
+        <h2 class="text-lg sm:text-xl md:text-2xl font-bold text-lp-dark-blue mb-2 sm:mb-3 leading-tight">
+            <a href="{{url}}" class="hover:opacity-80 transition-opacity">
+                {{title}}
+            </a>
+        </h2>
+        
+        {{#if excerpt}}
+            <p class="text-xs sm:text-sm md:text-base text-lp-gray mb-3 sm:mb-4 line-clamp-3 grow">
+                {{excerpt words="20"}}
+            </p>
+        {{/if}}
+        
+        <div class="flex items-center justify-between text-xs sm:text-sm text-lp-gray mt-auto pt-4 border-t border-gray-200">
+            <div class="flex items-center">
+                {{#primary_author}}
+                    {{#if profile_image}}
+                        <img class="w-6 h-6 rounded-full mr-2 object-cover" 
+                             src="{{img_url profile_image size="xs"}}" 
+                             alt="{{name}}">
+                    {{/if}}
+                    <span>{{name}}</span>
+                {{/primary_author}}
+            </div>
+            <time datetime="{{date format="YYYY-MM-DD"}}">
+                {{date format="MMM D, YYYY"}}
+            </time>
+        </div>
+    </div>
+</article>
+

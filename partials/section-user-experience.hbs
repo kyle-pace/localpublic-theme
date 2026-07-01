@@ -1,0 +1,26 @@
+{{! User Experience Section }}
+<section class="bg-lp-light-blue py-8 sm:py-12 md:py-16 lg:py-20">
+    <div class="container mx-auto px-4 sm:px-6">
+        <h2 class="text-[28px] sm:text-[32px] md:text-[40px] font-bold mb-3 sm:mb-4 text-center leading-[120%] sm:leading-[130%] md:leading-[52px] px-2">
+            A Refined User Experience
+        </h2>
+        <p class="text-[16px] sm:text-[18px] md:text-[20px] font-medium text-center mb-8 sm:mb-10 md:mb-12 max-w-3xl mx-auto leading-[24px] sm:leading-[26px] md:leading-[28px] px-2">
+          Each platform is thoughtfully designed to elevate the user experience, highlighting station branding, intuitive design, and accessibility for all.
+        </p>
+    </div>
+    <div class="w-full overflow-hidden">
+        <div class="swiper swiper-user-experience w-full">
+            <div class="swiper-wrapper">
+                {{#get "pages" limit="1" filter="tag:hash-user-experience"}}
+                    {{#foreach pages}}
+                        <div class="swiper-slide-temp">
+                            {{content}}
+                        </div>
+                    {{/foreach}}
+                {{/get}}
+            </div>
+        </div>
+    </div>
+    
+</section>
+

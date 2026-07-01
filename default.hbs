@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}" data-theme="localpublic v1.0.0" data-theme="localpublic v1.0.0" data-theme="localpublic v1.0.0" data-theme="localpublic v1.0.0" data-theme="localpublic v1.0.0" data-theme="localpublic v1.0.0" data-theme="localpublic v1.0.0" data-theme="localpublic v1.0.0" data-theme="localpublic v1.0.0" data-theme="localpublic v1.0.0" data-theme="localpublic v1.0.0" data-theme="localpublic v1.0.0">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{meta_title}}</title>
+    
+    {{! Fonts }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    {{! Styles }}
+    <link rel="stylesheet" href="{{asset "built/app.css"}}">
+    
+    {{! Ghost Head }}
+    {{ghost_head}}
+    
+    <style>
+        body {
+            font-family: 'Figtree', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="{{body_class}} bg-white text-gray-800 font-figtree">
+    
+    {{! Header }}
+    {{> header}}
+    
+    {{! Main Content }}
+    <main>
+        {{{body}}}
+    </main>
+    
+    {{! Footer }}
+    {{> footer}}
+    
+    {{! Ghost Foot }}
+    {{ghost_foot}}
+    
+    {{! Scripts }}
+    <script src="{{asset "built/app.js"}}"></script>
+</body>
+</html>

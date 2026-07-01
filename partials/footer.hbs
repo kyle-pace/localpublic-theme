@@ -1,0 +1,20 @@
+<footer class="bg-lp-dark-blue text-white py-6 sm:py-8 md:py-10 lg:py-12">
+    <div class="container mx-auto px-4 sm:px-6">
+        <div class="text-center">
+            <div class="flex items-center justify-center space-x-1 sm:space-x-2 mb-3 sm:mb-4">
+                <a href="{{@site.url}}" class="flex items-center space-x-1 sm:space-x-2">
+                    {{#if @site.logo}}
+                        <img src="{{@site.logo}}" alt="{{@site.title}}" class="h-8 sm:h-10 md:h-12 max-w-[194px] w-auto">
+                    {{else}}
+                        <span class="text-xl sm:text-2xl font-bold">LOCAL</span>
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
+                        </svg>
+                        <span class="text-xl sm:text-2xl font-bold">PUBLIC</span>
+                    {{/if}}
+                </a>
+            </div>
+            <p class="text-sm sm:text-base text-gray-400">&copy; {{date format="YYYY"}} {{@site.title}}. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
