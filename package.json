@@ -1,6 +1,6 @@
 {
-  "name": "localpublic",
-  "description": "Local Public Ghost Theme",
+  "name": "localpublic-news",
+  "description": "Local Public Ghost Theme (with News archive page and header cleanup)",
   "version": "1.0.0",
   "engines": {
     "ghost": ">=5.0.0"
