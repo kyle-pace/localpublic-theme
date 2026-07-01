@@ -28,7 +28,6 @@
                 {{navigation}}
                 {{#if @site.members_enabled}}
                     {{#unless @member}}
-                        <li><a href="#" data-portal="signin" class="hover:text-lp-light-blue transition">Sign In</a></li>
                         <li><a href="#" data-portal="signup" class="hover:text-lp-light-blue transition">Subscribe</a></li>
                     {{else}}
                         <li><a href="#" data-portal="account" class="hover:text-lp-light-blue transition">Account</a></li>
@@ -62,9 +61,6 @@
                 <div class="pt-3 mt-3 border-t border-white/10">
                     <div class="flex flex-col gap-2">
                         {{#unless @member}}
-                            <a href="#" data-portal="signin" class="block w-full px-4 py-3 text-base font-medium text-white bg-white/10 hover:bg-white/20 active:bg-white/30 rounded-lg transition-colors duration-200 text-center cursor-pointer">
-                                Sign In
-                            </a>
                             <a href="#" data-portal="signup" class="block w-full px-4 py-3 text-base font-semibold text-lp-dark-blue bg-lp-light-blue hover:bg-white active:bg-white/90 rounded-lg transition-colors duration-200 text-center cursor-pointer">
                                 Subscribe
                             </a>
